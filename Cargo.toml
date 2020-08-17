@@ -1,5 +1,5 @@
 [package]
-name = "jax"
+name = "zc"
 version = "0.1.0"
 authors = ["Anthony Foxclaw <noreply@tonytins.xyz>"]
 edition = "2018"
