@@ -29,7 +29,7 @@ fn build_ast_from_expr(pair: Pair<Rule>) -> AstNode {
     unimplemented!()
 }
 
-fn parse_dyadic_verb(pair: Pair<Rule>, lhs: AstNode, rhs: AstNode) -> AstNode::DyadicOp {
+fn parse_dyadic_verb(pair: Pair<Rule>, lhs: AstNode, rhs: AstNode) -> AstNode {
    AstNode::DyadicOp {
        lhs: Box::new(lhs),
        rhs: Box::new(rhs),
@@ -52,7 +52,7 @@ fn parse_dyadic_verb(pair: Pair<Rule>, lhs: AstNode, rhs: AstNode) -> AstNode::D
    }
 }
 
-fn parse_monadic_verb(pair: Pair<Rule>, expr: AstNode) -> AstNode::MonadicOp {
+fn parse_monadic_verb(pair: Pair<Rule>, expr: AstNode) -> AstNode {
     AstNode::MonadicOp {
         verb: match pair.as_str() {
             ">:" => MonadicVerb::Increment,
