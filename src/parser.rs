@@ -2,7 +2,7 @@ use crate::ast::{AstNode, AstNode::*, MonadicVerb, DyadicVerb};
 use pest::{Parser, error::Error, iterators::Pair};
 
 #[derive(Parser)]
-#[grammar = "jax.pest"]
+#[grammar = "j.pest"]
 pub struct ZParser;
 
 pub fn parse(source: &str) -> Result<Vec<AstNode>, Error<Rule>> {

@@ -1,6 +1,5 @@
-program = _{ SOI ~ "\n"* ~ (stmts ~ "\n"+) * ~ stmts ~ EOI }
+program = _{ SOI ~ "\n"* ~ (stmt ~ "\n"+) * ~ stmt ~ EOI }
 stmt = _{ expr }
-stmts = _{ stmt ~ ":" ~ stmts | stmt }
 expr = {
       assgmtExpr
     | monadicExpr

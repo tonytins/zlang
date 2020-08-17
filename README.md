@@ -2,7 +2,7 @@
 
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0) [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 
-Jax BASIC-inspired [esoteric programming language](https://en.wikipedia.org/wiki/Esoteric_programming_language).
+Jax is a BASIC-inspired [esoteric programming language](https://en.wikipedia.org/wiki/Esoteric_programming_language).
 
 ## To-do
 
