@@ -1,4 +1,4 @@
-use crate::ast::{AstNode, AstNode::*};
+use crate::ast::{AstNode, AstNode::*, MonadicVerb, DyadicVerb};
 use pest::{Parser, error::Error, iterators::Pair};
 
 #[derive(Parser)]
@@ -29,12 +29,41 @@ fn build_ast_from_expr(pair: Pair<Rule>) -> AstNode {
     unimplemented!()
 }
 
-fn parse_dyadic_verb(pair: Pair<Rule>, lhs: AstNode, rhs: AstNode) -> AstNode {
+fn parse_dyadic_verb(pair: Pair<Rule>, lhs: AstNode, rhs: AstNode) -> AstNode::DyadicOp {
    AstNode::DyadicOp {
        lhs: Box::new(lhs),
        rhs: Box::new(rhs),
        verb: match pair.as_str() {
+           "+" => DyadicVerb::Plus,
+           "*" => DyadicVerb::Times,
+           "-" => DyadicVerb::Minus,
+           "<" => DyadicVerb::LessThan,
+           "=" => DyadicVerb::Equal,
+           ">" => DyadicVerb::LargerThan,
+           "%" => DyadicVerb::Divide,
+           "^" => DyadicVerb::Power,
+           "|" => DyadicVerb::Residue,
+           "#" => DyadicVerb::Copy,
+           ">." => DyadicVerb::LargerOf,
+           ">:" => DyadicVerb::LargerOrEqual,
+           "$" => DyadicVerb::Shape,
            _ => panic!("Unexpected verb: {}", pair.as_str())
        },
    }
+}
+
+fn parse_monadic_verb(pair: Pair<Rule>, expr: AstNode) -> AstNode::MonadicOp {
+    AstNode::MonadicOp {
+        verb: match pair.as_str() {
+            ">:" => MonadicVerb::Increment,
+            "*:" => MonadicVerb::Square,
+            "-" => MonadicVerb::Negate,
+            "%" => MonadicVerb::Reciprocal,
+            "#" => MonadicVerb::Tally,
+            ">." => MonadicVerb::Ceiling,
+            "$" => MonadicVerb::ShapeOf,
+            _ => panic!("Unsupported verb: {}", pair.as_str())
+        },
+        expr: Box::new(expr),
+    }
 }
