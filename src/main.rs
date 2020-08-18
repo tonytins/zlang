@@ -1,5 +1,5 @@
 use clap::Clap;
-use jax::parser::parse;
+use zc::parser::parse;
 
 #[derive(Clap)]
 #[clap(author, about, version)]
