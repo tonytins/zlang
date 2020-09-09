@@ -30,12 +30,12 @@ fn build_ast_from_expr(pair: Pair<Rule>) -> AstNode {
             let verb = pair.next().unwrap();
             let expr = pair.next().unwrap();
             let expr = build_ast_from_expr(expr);
-            parse_monadic_verb(verb, expr);
+            parse_monadic_verb(verb, expr)
         }
     }
 }
 
-fn build_ast_from_term(pair: Pair<Rule>) -> AstNode {
+/*fn build_ast_from_term(pair: Pair<Rule>) -> AstNode {
     match pair.as_rule() {
         Pair::integer => {
             let istr = pair.as_str();
@@ -47,7 +47,7 @@ fn build_ast_from_term(pair: Pair<Rule>) -> AstNode {
             AstNode::Integer(sign * integer)
         }
     }
-}
+}*/
 
 fn parse_dyadic_verb(pair: Pair<Rule>, lhs: AstNode, rhs: AstNode) -> AstNode {
    AstNode::DyadicOp {
