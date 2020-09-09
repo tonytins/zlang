@@ -23,10 +23,30 @@ pub fn parse(source: &str) -> Result<Vec<AstNode>, Error<Rule>> {
 }
 
 fn build_ast_from_expr(pair: Pair<Rule>) -> AstNode {
-    /*match pair.as_rule() {
+    match pair.as_rule() {
+        Rule::expr => build_ast_from_expr(pair.into_inner().next().unwrap()),
+        Rule::monadicExpr => {
+            let mut pair = pair.into_inner();
+            let verb = pair.next().unwrap();
+            let expr = pair.next().unwrap();
+            let expr = build_ast_from_expr(expr);
+            parse_monadic_verb(verb, expr);
+        }
+    }
+}
 
-    }*/
-    unimplemented!()
+fn build_ast_from_term(pair: Pair<Rule>) -> AstNode {
+    match pair.as_rule() {
+        Pair::integer => {
+            let istr = pair.as_str();
+            let (sign, istr) = match  &istr[..1] {
+                "_" => (-1, &istr[1..]),
+                _ => (1, &istr[..]),
+            };
+            let integer: i32 = istr.parse().unwrap();
+            AstNode::Integer(sign * integer)
+        }
+    }
 }
 
 fn parse_dyadic_verb(pair: Pair<Rule>, lhs: AstNode, rhs: AstNode) -> AstNode {

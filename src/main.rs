@@ -13,7 +13,7 @@ fn main() {
     let unparsed_file = std::fs::read_to_string(opts.file.as_str())
         .expect("Failed to read jax file");
     let parser = parse(&unparsed_file)
-        .expect("Failed to parse file.");
+        .expect("Failed to parse jax file.");
 
     println!("{:?}", &parser);
 }
